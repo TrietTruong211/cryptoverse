@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter as Router } from 'react-router-dom'; //To use Link
+import { Provider } from 'react-redux';
+
+
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import store from './app/store'
+import 'antd/dist/antd.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    //Wrap app around router to use Link
+    <Router>
+        {/* using store = state of the whole app, using provider to give access to every app component */}
+        {/* Courtesy of react-redux */}
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </Router>, 
+    document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
