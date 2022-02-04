@@ -5,6 +5,8 @@ import millify from 'millify';
 import { Col, Row, Typography, Select } from 'antd'
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined } from '@ant-design/icons'
 
+import Loader from './Loader'
+
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi'
 import LineChart from './LineChart';
 
@@ -17,7 +19,7 @@ const Cryptodetails = () => {
     const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
     const { data: coinHistory } = useGetCryptoHistoryQuery({coinId, timePeriod});
 
-    if (isFetching) return "Loading..."
+    if (isFetching) return <Loader />
 
 // Main data from crypto
     const cryptoDetails = data?.data?.coin;
